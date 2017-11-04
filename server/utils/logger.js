@@ -6,17 +6,19 @@ const winston = require('winston');
 
 const PROJECT_ROOT = path.join(__dirname, '..');
 
-const formatter = function(options) {
-  return `${options.timestamp()} [${winston.config.colorize(options.level, options.level)}] ${options.message}`;
+const formatter = (options) => {
+  return `${options.timestamp()} ` +
+    `[${winston.config.colorize(options.level, options.level)}] ` +
+    `${options.message}`;
 };
 
-const timestamp = function() {
+const timestamp = () => {
   return dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
 };
 
-const logger = new (winston.Logger)({
+const logger = new(winston.Logger)({
   transports: [
-    new (winston.transports.Console)({
+    new(winston.transports.Console)({
       colorize: true,
       formatter,
       level: process.env.LOG_LEVEL,
@@ -28,26 +30,26 @@ const logger = new (winston.Logger)({
 
 // this allows winston to handle output from express' morgan middleware
 logger.stream = {
-  write: function(message) {
+  write: (message) => {
     logger.info(message);
   },
 };
 
 // A custom logger interface that wraps winston, making it easy to instrument
 // code and still possible to replace winston in the future.
-module.exports.debug = module.exports.log = function() {
+module.exports.debug = module.exports.log = () => {
   logger.debug.apply(logger, formatLogArguments(arguments));
 };
 
-module.exports.info = function() {
+module.exports.info = () => {
   logger.info.apply(logger, formatLogArguments(arguments));
 };
 
-module.exports.warn = function() {
+module.exports.warn = () => {
   logger.warn.apply(logger, formatLogArguments(arguments));
 };
 
-module.exports.error = function() {
+module.exports.error = () => {
   logger.error.apply(logger, formatLogArguments(arguments));
 };
 

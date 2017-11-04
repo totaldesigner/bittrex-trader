@@ -3,6 +3,8 @@ import * as ReactDOM from 'react-dom';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import * as BittrexActions from '../../actions/bittrex';
+import { IRootState } from '../../reducers';
 
 import * as classNames from 'classnames';
 import Footer from '../../components/Footer';
@@ -12,6 +14,8 @@ import * as style from './style.css';
 
 export interface IHomePageProps<T> {
   intl?: intlShape;
+  bittrexActions?: typeof BittrexActions;
+  marketSummaries: Bittrex.IMarketSummary[];
 }
 
 export interface IHomePageState {
@@ -23,7 +27,12 @@ export class HomePage extends React.PureComponent<IHomePageProps<any>, IHomePage
     super(props, context);
   }
 
+  public componentDidMount() {
+    this.props.bittrexActions.getMarketSummaries();
+  }
+
   public render() {
+    const marketSummaries = this.props.marketSummaries;
 
     return (
       <div>
@@ -37,4 +46,19 @@ export class HomePage extends React.PureComponent<IHomePageProps<any>, IHomePage
   }
 }
 
-export default injectIntl(HomePage);
+function mapStateToProps(state: IRootState) {
+  return {
+    marketSummaries: state.marketSummaries,
+  };
+}
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    bittrexActions: bindActionCreators(BittrexActions as any, dispatch),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(injectIntl(HomePage));

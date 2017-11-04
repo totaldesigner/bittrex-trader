@@ -1,0 +1,25 @@
+{
+  "name": "bittrex",
+  "plural": "bittrex",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {
+    "getMarketSummaries": {
+      "returns": {
+        "args": "result",
+        "type": "array",
+        "root": true
+      },
+      "http": {
+        "verb": "get"
+      }
+    }
+  }
+}
