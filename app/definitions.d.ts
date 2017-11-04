@@ -1,6 +1,6 @@
 declare type TLanguage = 'auto' | 'ko' | 'en' | 'es' | 'fr' | 'id' | 'ja' | 'th' | 'vi' | 'zh-CN' | 'zh-TW';
 
-
+/* tslint:disable:no-namespace */
 declare namespace Bittrex {
   export interface IMarketSummary {
 

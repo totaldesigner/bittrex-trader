@@ -9,6 +9,6 @@
     "no-submodule-imports": false,
     "prefer-conditional-expression": false,
     "quotemark": [ true, "single", "jsx-double" ],
-    "variable-name": [true, "allow-leading-underscore"]
+    "variable-name": [true, "allow-pascal-case", "allow-leading-underscore"]
   }
 }

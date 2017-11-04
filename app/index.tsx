@@ -31,13 +31,13 @@ const asyncComponent = (getComponent) => (
         getComponent().then((Component) => {
           AsyncComponent.Component = Component;
           setTimeout(() => {
-            this.setState({Component});
+            this.setState({ Component });
           }, 0);
         });
       }
     }
     public render() {
-      const {Component} = this.state;
+      const { Component } = this.state;
       if (Component) {
         return (<Component {...this.props} />);
       }
