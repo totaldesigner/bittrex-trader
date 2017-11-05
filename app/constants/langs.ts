@@ -1,6 +1,5 @@
 import { getLanguage } from '../utils/locale';
 
-export const AUTO: TLanguage = 'auto';
 export const KO: TLanguage = 'ko';
 export const EN: TLanguage = 'en';
 

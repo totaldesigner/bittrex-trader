@@ -11,7 +11,65 @@
   "relations": {},
   "acls": [],
   "methods": {
+    "getMarkets": {
+      "returns": {
+        "args": "result",
+        "type": "array",
+        "root": true
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "getCurrencies": {
+      "returns": {
+        "args": "result",
+        "type": "array",
+        "root": true
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "getTicker": {
+      "accepts": [
+        {
+          "arg": "market",
+          "type": "string",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": {
+        "args": "result",
+        "type": "array",
+        "root": true
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
     "getMarketSummaries": {
+      "returns": {
+        "args": "result",
+        "type": "array",
+        "root": true
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "getMarketSummary": {
+      "accepts": [
+        {
+          "arg": "market",
+          "type": "string",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
       "returns": {
         "args": "result",
         "type": "array",

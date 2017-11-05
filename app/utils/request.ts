@@ -1,26 +1,29 @@
 import 'whatwg-fetch';
 
-export function del(url, options) {
+export function del(url, options?) {
   return request(url, {
+    ...options,
     compress: true,
     method: 'DELETE',
-    ...options,
   });
 }
 
-export function get(url, options) {
+export function get(url, options?) {
+  if (options) {
+    url += `?${jsonToQuery(options)}`;
+  }
   return request(url, {
+    ...options,
     compress: true,
     method: 'GET',
-    ...options,
   });
 }
 
-export function post(url, options) {
+export function post(url, options?) {
   return request(url, {
+    ...options,
     compress: true,
     method: 'POST',
-    ...options,
   });
 }
 
@@ -48,6 +51,12 @@ export async function checkStatus(response: Response) {
     ...error,
     ...json,
   };
+}
+
+export function jsonToQuery(json) {
+  return Object.keys(json).map((key) => {
+      return key + '=' + json[key];
+    }).join('&');
 }
 
 /**

@@ -15,8 +15,11 @@ module.exports = (Bittrex) => {
    */
   Bittrex.getMarkets = (cb) => {
     process.nextTick(() => {
-      cb(null, {
-
+      bittrex.getmarketsummaries((data, err) => {
+        if (err) {
+          logger.error(err);
+        }
+        cb(null, data.result);
       });
     });
   };
@@ -28,8 +31,11 @@ module.exports = (Bittrex) => {
    */
   Bittrex.getCurrencies = (cb) => {
     process.nextTick(() => {
-      cb(null, {
-
+      bittrex.getmarketsummaries((data, err) => {
+        if (err) {
+          logger.error(err);
+        }
+        cb(null, data.result);
       });
     });
   };
@@ -41,10 +47,15 @@ module.exports = (Bittrex) => {
    *                 to retrieve the ticker.
    * @returns Either a promise of a ticker, or a ticker
    */
-  Bittrex.getTicker = (cb) => {
+  Bittrex.getTicker = (market, cb) => {
     process.nextTick(() => {
-      cb(null, {
-
+      bittrex.getticker({
+        market,
+      }, (data, err) => {
+        if (err) {
+          logger.error(err);
+        }
+        cb(null, data.result);
       });
     });
   };
@@ -72,10 +83,15 @@ module.exports = (Bittrex) => {
    *                 to retrieve the summary.
    * @returns Either a promise of a market summary, or a market summary
    */
-  Bittrex.getMarketSummary = (cb) => {
+  Bittrex.getMarketSummary = (market, cb) => {
     process.nextTick(() => {
-      cb(null, {
-
+      bittrex.getticker({
+        market,
+      }, (data, err) => {
+        if (err) {
+          logger.error(err);
+        }
+        cb(null, data.result);
       });
     });
   };

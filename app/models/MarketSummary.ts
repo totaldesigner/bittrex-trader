@@ -1,7 +1,7 @@
 /**
  * Represents a single market summary.
  */
-export class MarketSummary implements Bittrex.IMarketSummary {
+export class MarketSummary implements IMarketSummary {
 
   private _name: string;
   private _high: number;

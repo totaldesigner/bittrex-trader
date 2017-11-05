@@ -4,6 +4,7 @@ import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as BittrexActions from '../../actions/bittrex';
+import { MarketSummary } from '../../models/MarketSummary';
 import { IRootState } from '../../reducers';
 
 import * as classNames from 'classnames';
@@ -15,7 +16,8 @@ import * as style from './style.css';
 export interface IHomePageProps<T> {
   intl?: intlShape;
   bittrexActions?: typeof BittrexActions;
-  marketSummaries: Bittrex.IMarketSummary[];
+  marketSummaries: IMarketSummary[];
+  ticker: ITicker;
 }
 
 export interface IHomePageState {
@@ -31,8 +33,18 @@ export class HomePage extends React.PureComponent<IHomePageProps<any>, IHomePage
     this.props.bittrexActions.getMarketSummaries();
   }
 
+  public componentWillReceiveProps(nextProps) {
+    const marketSummaries = nextProps.marketSummaries;
+    if (this.props.marketSummaries !== marketSummaries) {
+      for (const marketSummary of marketSummaries) {
+        this.props.bittrexActions.getTicker({market: marketSummary.name});
+      }
+    }
+  }
+
   public render() {
     const marketSummaries = this.props.marketSummaries;
+    const ticker = this.props.ticker;
 
     return (
       <div>
@@ -49,6 +61,7 @@ export class HomePage extends React.PureComponent<IHomePageProps<any>, IHomePage
 function mapStateToProps(state: IRootState) {
   return {
     marketSummaries: state.marketSummaries,
+    ticker: state.ticker,
   };
 }
 

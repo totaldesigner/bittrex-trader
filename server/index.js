@@ -9,10 +9,12 @@ const resolve = require('path').resolve;
 const logger = require('./utils/logger');
 const setup = require('./middlewares/frontendMiddleware');
 
-var loopback = require('loopback');
-var boot = require('loopback-boot');
+const loopback = require('loopback');
+const boot = require('loopback-boot');
+const dotenv = require('dotenv');
+dotenv.config();
 
-var app = module.exports = loopback();
+const app = module.exports = loopback();
 
 setup(app, {
   outputPath: resolve(process.cwd(), 'build'),

@@ -1,21 +1,20 @@
 import { handleActions } from 'redux-actions';
-import * as Actions from '../constants/bittrex';
-import { MarketSummary } from '../models/bittrex/MarketSummary';
+import * as Actions from '../constants/actions';
+import { MarketSummary } from '../models/MarketSummary';
+import { Ticker } from '../models/Ticker';
 
-const initialState: Bittrex.TMarketSummariesStoreState = [];
-
-export default handleActions<Bittrex.TMarketSummariesStoreState, Bittrex.IMarketSummary[]>({
-  [Actions.GET_MARKET_SUMMARIES_STARTED]: (state, action) => {
-    return [];
+export const ticker = handleActions<TTickerStoreState, ITicker>({
+  [Actions.GET_TICKER_SUCCEEDED]: (state, action) => {
+    const payload = action.payload;
+    return new Ticker(payload);
   },
+}, null);
+
+export const marketSummaries = handleActions<TMarketSummariesStoreState, IMarketSummary[]>({
   [Actions.GET_MARKET_SUMMARIES_SUCCEEDED]: (state, action) => {
     const payload = action.payload;
-    const marketSummaries = payload.map((json) => {
+    return payload.map((json) => {
       return new MarketSummary(json);
     });
-    return marketSummaries;
   },
-  [Actions.GET_MARKET_SUMMARIES_FAILED]: (state, action) => {
-    return [];
-  },
-}, initialState);
+}, []);
