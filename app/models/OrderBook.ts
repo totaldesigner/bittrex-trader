@@ -5,7 +5,7 @@ import { OrderBookOrder } from './OrderBookOrder';
 /**
  * Represents a single order book.
  */
-export class OrderBook {
+export class OrderBook implements IOrderBook {
 
   private _buys: OrderBookOrder[];
   private _sells: OrderBookOrder[];
@@ -14,15 +14,13 @@ export class OrderBook {
 
     this._buys = [];
     if (!isNullOrUndefined(json.buy)) {
-
       for (const buyOrderJson of json.buy) {
         this._buys.push(new OrderBookOrder(buyOrderJson, OrderType.BUY));
       }
-
     }
+
     this._sells = [];
     if (!isNullOrUndefined(json.sell)) {
-
       for (const sellOrderJson of json.sell) {
         this._sells.push(new OrderBookOrder(sellOrderJson, OrderType.SELL));
       }

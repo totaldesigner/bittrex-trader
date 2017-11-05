@@ -1,7 +1,7 @@
 /**
  * Represents a single market.
  */
-export class Market {
+export class Market implements IMarket {
 
   private _marketCurrencyShort: string;
   private _baseCurrencyShort: string;

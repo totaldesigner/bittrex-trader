@@ -4,7 +4,7 @@ import { OrderType } from '../enums/OrderType';
 /**
  * Represents a single trade.
  */
-export class Trade {
+export class Trade implements ITrade {
 
   private _id: number;
   private _timestamp: Date;

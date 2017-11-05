@@ -3,7 +3,7 @@ import { OrderType } from '../enums/OrderType';
 /**
  * Represents a single order book order.
  */
-export class OrderBookOrder {
+export class OrderBookOrder implements IOrderBookOrder {
 
   private _type: OrderType;
   private _quantity: number;

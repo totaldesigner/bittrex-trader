@@ -106,10 +106,16 @@ module.exports = (Bittrex) => {
    *                 buys, sells, or both.
    * @returns Either a promise of an order book, or an order book
    */
-  Bittrex.getOrderBook = (cb) => {
+  Bittrex.getOrderBook = (market, type, cb) => {
     process.nextTick(() => {
-      cb(null, {
-
+      bittrex.getorderbook({
+        market,
+        type,
+      }, (data, err) => {
+        if (err) {
+          logger.error(err);
+        }
+        cb(null, data.result);
       });
     });
   };
@@ -121,10 +127,15 @@ module.exports = (Bittrex) => {
    *                 to retrieve the market history.
    * @returns Either a promise of a trade array, or a trade array
    */
-  Bittrex.getMarketHistory = (cb) => {
+  Bittrex.getMarketHistory = (market, cb) => {
     process.nextTick(() => {
-      cb(null, {
-
+      bittrex.getmarkethistory({
+        market,
+      }, (data, err) => {
+        if (err) {
+          logger.error(err);
+        }
+        cb(null, data.result);
       });
     });
   };
@@ -137,10 +148,17 @@ module.exports = (Bittrex) => {
    * @param   rate     The price at which we would like to buy.
    * @returns Either a promise of the placed order's identifier, or the placed
    */
-  Bittrex.buyWithLimit = (cb) => {
+  Bittrex.buyWithLimit = (market, quantity, rate, cb) => {
     process.nextTick(() => {
-      cb(null, {
-
+      bittrex.buylimit({
+        market,
+        quantity,
+        rate,
+      }, (data, err) => {
+        if (err) {
+          logger.error(err);
+        }
+        cb(null, data.result);
       });
     });
   };
@@ -153,10 +171,17 @@ module.exports = (Bittrex) => {
    * @param   rate     The price at which we would like to sell.
    * @returns Either a promise of the placed order's identifier, or the placed
    */
-  Bittrex.sellWithLimit = (cb) => {
+  Bittrex.sellWithLimit = (market, quantity, rate, cb) => {
     process.nextTick(() => {
-      cb(null, {
-
+      bittrex.selllimit({
+        market,
+        quantity,
+        rate,
+      }, (data, err) => {
+        if (err) {
+          logger.error(err);
+        }
+        cb(null, data.result);
       });
     });
   };
@@ -168,10 +193,15 @@ module.exports = (Bittrex) => {
    * @returns True if the operation resulted in a success, throws
    *          otherwise.
    */
-  Bittrex.cancelOrder = (cb) => {
+  Bittrex.cancelOrder = (uuid, cb) => {
     process.nextTick(() => {
-      cb(null, {
-
+      bittrex.cancel({
+        uuid,
+      }, (data, err) => {
+        if (err) {
+          logger.error(err);
+        }
+        cb(null, data.result);
       });
     });
   };
@@ -183,10 +213,15 @@ module.exports = (Bittrex) => {
    *                 the open orders.
    * @returns Either a promise of an open order array, or an open
    */
-  Bittrex.getOpenOrders = (cb) => {
+  Bittrex.getOpenOrders = (market, cb) => {
     process.nextTick(() => {
-      cb(null, {
-
+      bittrex.getopenorders({
+        market,
+      }, (data, err) => {
+        if (err) {
+          logger.error(err);
+        }
+        cb(null, data.result);
       });
     });
   };
@@ -198,8 +233,11 @@ module.exports = (Bittrex) => {
    */
   Bittrex.getBalances = (cb) => {
     process.nextTick(() => {
-      cb(null, {
-
+      bittrex.getbalances((data, err) => {
+        if (err) {
+          logger.error(err);
+        }
+        cb(null, data.result);
       });
     });
   };
@@ -211,10 +249,15 @@ module.exports = (Bittrex) => {
    *                 the balance.
    * @returns Either a promise of a balance, or a balance if using
    */
-  Bittrex.getBalance = (cb) => {
+  Bittrex.getBalance = (currency, cb) => {
     process.nextTick(() => {
-      cb(null, {
-
+      bittrex.getbalance({
+        currency,
+      }, (data, err) => {
+        if (err) {
+          logger.error(err);
+        }
+        cb(null, data.result);
       });
     });
   };
@@ -226,10 +269,15 @@ module.exports = (Bittrex) => {
    *                 the deposit address.
    * @returns Either a promise of a deposit address, or a deposit
    */
-  Bittrex.getDepositAddress = (cb) => {
+  Bittrex.getDepositAddress = (currency, cb) => {
     process.nextTick(() => {
-      cb(null, {
-
+      bittrex.getdepositaddress({
+        currency,
+      }, (data, err) => {
+        if (err) {
+          logger.error(err);
+        }
+        cb(null, data.result);
       });
     });
   };
@@ -240,14 +288,22 @@ module.exports = (Bittrex) => {
    * @param currency  The currency which we would like to withdraw.
    * @param quantity  The quantity which we would like to withdraw.
    * @param address   The address to which we would like to withdraw.
-   * @param paymentId Optional parameter used for CryptoNotes/BitShareX/Nxt.
+   * @param paymentid Optional parameter used for CryptoNotes/BitShareX/Nxt.
    *
    * @returns Either a promise of a withdrawal ID, or a withdrawal ID
    */
-  Bittrex.withdraw = (cb) => {
+  Bittrex.withdraw = (currency, quantity, address, paymentid, cb) => {
     process.nextTick(() => {
-      cb(null, {
-
+      bittrex.withdraw({
+        currency,
+        quantity,
+        address,
+        paymentid,
+      }, (data, err) => {
+        if (err) {
+          logger.error(err);
+        }
+        cb(null, data.result);
       });
     });
   };
@@ -259,10 +315,15 @@ module.exports = (Bittrex) => {
    *
    * @returns Either a promise of an order, or an order if using
    */
-  Bittrex.getOrder = (cb) => {
+  Bittrex.getOrder = (uuid, cb) => {
     process.nextTick(() => {
-      cb(null, {
-
+      bittrex.getorder({
+        uuid,
+      }, (data, err) => {
+        if (err) {
+          logger.error(err);
+        }
+        cb(null, data.result);
       });
     });
   };

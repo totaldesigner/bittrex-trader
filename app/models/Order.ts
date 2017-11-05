@@ -3,7 +3,7 @@ import { OrderType } from '../enums/OrderType';
 /**
  * Represents a single order.
  */
-export class Order {
+export class Order implements IOrder {
 
   private _accountId: string;
   private _orderId: string;
@@ -30,7 +30,6 @@ export class Order {
   private _conditionTarget: number;
 
   constructor(json: any) {
-
     this._accountId = json.AccountId;
     this._orderId = json.OrderUuid;
     this._market = json.Exchange;
@@ -54,7 +53,6 @@ export class Order {
     this._conditional = json.IsConditional;
     this._condition = json.Condition;
     this._conditionTarget = json.ConditionTarget;
-
   }
 
   get accountId(): string {

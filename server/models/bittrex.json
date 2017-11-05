@@ -32,15 +32,13 @@
       }
     },
     "getTicker": {
-      "accepts": [
-        {
-          "arg": "market",
-          "type": "string",
-          "http": {
-            "source": "query"
-          }
+      "accepts": [{
+        "arg": "market",
+        "type": "string",
+        "http": {
+          "source": "query"
         }
-      ],
+      }],
       "returns": {
         "args": "result",
         "type": "array",
@@ -61,18 +59,210 @@
       }
     },
     "getMarketSummary": {
-      "accepts": [
-        {
-          "arg": "market",
-          "type": "string",
-          "http": {
-            "source": "query"
-          }
+      "accepts": [{
+        "arg": "market",
+        "type": "string",
+        "http": {
+          "source": "query"
         }
-      ],
+      }],
       "returns": {
         "args": "result",
         "type": "array",
+        "root": true
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "getOrderBook": {
+      "accepts": [{
+        "arg": "market",
+        "type": "string",
+        "http": {
+          "source": "query"
+        }
+      }, {
+        "arg": "type",
+        "type": "string",
+        "http": {
+          "source": "query"
+        }
+      }],
+      "returns": {
+        "args": "result",
+        "type": "object",
+        "root": true
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "getMarketHistory": {
+      "accepts": [{
+        "arg": "market",
+        "type": "string",
+        "http": {
+          "source": "query"
+        }
+      }],
+      "returns": {
+        "args": "result",
+        "type": "array",
+        "root": true
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "buyWithLimit": {
+      "accepts": [{
+        "arg": "market",
+        "type": "string",
+        "http": {
+          "source": "query"
+        }
+      }, {
+        "arg": "quantity",
+        "type": "number",
+        "http": {
+          "source": "query"
+        }
+      }, {
+        "arg": "rate",
+        "type": "number",
+        "http": {
+          "source": "query"
+        }
+      }],
+      "returns": {
+        "args": "result",
+        "type": "object",
+        "root": true
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "sellWithLimit": {
+      "accepts": [{
+        "arg": "market",
+        "type": "string",
+        "http": {
+          "source": "query"
+        }
+      }, {
+        "arg": "quantity",
+        "type": "number",
+        "http": {
+          "source": "query"
+        }
+      }, {
+        "arg": "rate",
+        "type": "number",
+        "http": {
+          "source": "query"
+        }
+      }],
+      "returns": {
+        "args": "result",
+        "type": "object",
+        "root": true
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "getOpenOrders": {
+      "accepts": [{
+        "arg": "market",
+        "type": "string",
+        "http": {
+          "source": "query"
+        }
+      }],
+      "returns": {
+        "args": "result",
+        "type": "array",
+        "root": true
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "getBalances": {
+      "returns": {
+        "args": "result",
+        "type": "array",
+        "root": true
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "getBalance": {
+      "accepts": [{
+        "arg": "currency",
+        "type": "string",
+        "http": {
+          "source": "query"
+        }
+      }],
+      "returns": {
+        "args": "result",
+        "type": "object",
+        "root": true
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "getDepositAddress": {
+      "accepts": [{
+        "arg": "currency",
+        "type": "string",
+        "http": {
+          "source": "query"
+        }
+      }],
+      "returns": {
+        "args": "result",
+        "type": "object",
+        "root": true
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "withdraw": {
+      "accepts": [{
+        "arg": "currency",
+        "type": "string",
+        "http": {
+          "source": "query"
+        }
+      }, {
+        "arg": "quantity",
+        "type": "number",
+        "http": {
+          "source": "query"
+        }
+      }, {
+        "arg": "address",
+        "type": "string",
+        "http": {
+          "source": "query"
+        }
+      }, {
+        "arg": "paymentid",
+        "type": "string",
+        "http": {
+          "source": "query"
+        }
+      }],
+      "returns": {
+        "args": "result",
+        "type": "object",
         "root": true
       },
       "http": {

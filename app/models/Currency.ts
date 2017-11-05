@@ -1,7 +1,7 @@
 /**
  * Represents a single currency.
  */
-export class Currency {
+export class Currency implements ICurrency {
 
   private _nameShort: string;
   private _nameLong: string;
