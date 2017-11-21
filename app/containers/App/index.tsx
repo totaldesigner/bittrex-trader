@@ -1,5 +1,6 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
+import ErrorBoundary from '../ErrorBoundary';
 
 export interface IAppProps {
   className?: string;
@@ -17,7 +18,11 @@ export class App extends React.Component<IAppProps, IAppState> {
   }
 
   public render() {
-    return React.Children.only(this.props.children);
+    return (
+      <ErrorBoundary>
+        {this.props.children}
+      </ErrorBoundary>
+    );
   }
 }
 

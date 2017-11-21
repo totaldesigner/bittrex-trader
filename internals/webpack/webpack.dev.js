@@ -59,7 +59,10 @@ module.exports = require('./webpack.base')({
     }),
     new StyleLintPlugin({
       configFile: './.stylelintrc',
-      files: ['app/components/**/*.css', 'app/containers/**/*.css', 'app/global.css'],
+      files: [
+        'app/components/**/*.scss',
+        'app/containers/**/*.scss',
+        'app/global.scss'],
       failOnError: false,
     }),
   ],

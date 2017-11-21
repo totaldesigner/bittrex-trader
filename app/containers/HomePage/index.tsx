@@ -37,7 +37,7 @@ export class HomePage extends React.PureComponent<IHomePageProps<any>, IHomePage
     const marketSummaries = nextProps.marketSummaries;
     if (this.props.marketSummaries !== marketSummaries) {
       for (const marketSummary of marketSummaries) {
-        this.props.bittrexActions.getTicker({market: marketSummary.name});
+        this.props.bittrexActions.getTicker({ market: marketSummary.name });
       }
     }
   }

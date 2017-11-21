@@ -49,7 +49,7 @@ module.exports = (options) => ({
         }),
       },
       {
-        test: /global\.css$/,
+        test: /global\.scss$/,
         loader: ExtractGlobalCSS.extract({
           fallback: 'style-loader',
           use: [
@@ -83,8 +83,8 @@ module.exports = (options) => ({
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        LCS_SERVICE_NAME: (function () {
-          return process.env.NODE_ENV === 'production' ? "'lcs.naver.com'" : "'alpha-lcs.naver.com'"
+        LCS_SERVICE_NAME: (() => {
+          return process.env.NODE_ENV === 'production' ? "'lcs.naver.com'" : "'alpha-lcs.naver.com'";
         })(),
       },
     }),
@@ -98,7 +98,7 @@ module.exports = (options) => ({
           require('postcss-cssnext')(),
           require('postcss-import')({
             addDependencyTo: webpack,
-            path: [sourcePath]
+            path: [sourcePath],
           }),
           require('postcss-reporter')(),
           require('postcss-url')(),

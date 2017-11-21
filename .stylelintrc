@@ -1,8 +1,9 @@
 {
   "plugins": [
     "stylelint-order",
-    "stylelint-suitcss"
-  ],    
+    "stylelint-scss",
+    "stylelint-suitcss",
+  ],
   "ignoreFiles": [
     "app/static/*.css",
     "build/**/*.css",

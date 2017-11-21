@@ -38,7 +38,7 @@ module.exports = require('./webpack.base')({
       'es6-promise/auto',
       'location-origin',
       'object-assign-mdn',
-      path.join(process.cwd(), 'app/index.tsx')
+      path.join(process.cwd(), 'app/index.tsx'),
     ],
     vendor: [
       'react',
@@ -74,22 +74,22 @@ module.exports = require('./webpack.base')({
       compress: {
         warnings: false,
         unused: true,
-      }
+      },
     }),
 
     new CompressionPlugin({
-        asset: "[path].gz[query]",
-        algorithm: "gzip",
-        test: /\.(js|html)$/,
-        threshold: 10240,
-        minRatio: 0.8
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.(js|html)$/,
+      threshold: 10240,
+      minRatio: 0.8,
     }),
 
     new CopyWebpackPlugin([
       // { context: 'app', from: 'images/papago_og.png', to: 'images'},
-      { context: 'app', from: 'static', to: 'static' }
-    ])
-    
+      {context: 'app', from: 'static', to: 'static'},
+    ]),
+
     // Minify and optimize the index.html
   ].concat(htmlWebpackPlugins),
 

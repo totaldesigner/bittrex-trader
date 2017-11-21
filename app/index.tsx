@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { browserHistory, IndexRoute, Redirect, Route, Router } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
-import './global.css';
+import './global.scss';
 
 import LocaleProvider from './components/LocaleProvider';
 import App from './containers/App';
